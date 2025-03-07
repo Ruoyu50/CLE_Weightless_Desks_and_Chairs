@@ -7,8 +7,8 @@ public class BackToOrigin : MonoBehaviour
 
     private bool isReturning = false;  // 当前是否处于回归状态
 
-    private float rotationSpeed = 30f;  // 每秒10度
-    private float positionSpeed = 3f;  // 每秒3米
+    private float rotationSpeed = 30f;  // 每秒30度
+    private float positionSpeed = 3f;   // 每秒3米
 
     private const float stopThreshold = 0.01f;  // 判断停止的速度阈值
     private const float angleThreshold = 0.1f;  // 旋转误差阈值
@@ -82,10 +82,17 @@ public class BackToOrigin : MonoBehaviour
         }
     }
 
-    // 回归完成
+    // 回归完成，等待5秒后解除isKinematic
     void FinishReturnToOrigin()
     {
         isReturning = false;
-        rb.isKinematic = false;  // 恢复物理模拟
+        StartCoroutine(DelayedDeactivateKinematic());
+    }
+
+    // 5秒后解除isKinematic的协程
+    System.Collections.IEnumerator DelayedDeactivateKinematic()
+    {
+        yield return new WaitForSeconds(5f);
+        rb.isKinematic = false;
     }
 }

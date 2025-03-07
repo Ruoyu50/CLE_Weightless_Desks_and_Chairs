@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class TippingObject : MonoBehaviour
+public class BallReturn : MonoBehaviour
 {
     public Transform boxOrigin;  // 空物体（目标位置和角度）
     private Rigidbody rb;
 
     private bool isReturning = false;  // 当前是否处于回归状态
 
-    private float rotationSpeed = 15f;  // 每秒10度
-    private float positionSpeed = 1f;  // 每秒1米
+    private float rotationSpeed = 15f;  // 每秒15度
+    private float positionSpeed = 15f;  // 每秒15s米
 
     private const float stopThreshold = 0.01f;  // 判断停止的速度阈值
     private const float angleThreshold = 0.1f;  // 旋转误差阈值
